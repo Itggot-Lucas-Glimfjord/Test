@@ -14,7 +14,7 @@ def validpnr(pnr):
                 checkSum += int(figure)
 
         if int(ceil(checkSum / float(10) ** (len(str(checkSum)) - 1)) * 10 ** (
-            len(str(checkSum)) - 1) - checkSum) == int(personNumber[9]):
+                    len(str(checkSum)) - 1) - checkSum) == int(personNumber[9]):
             return True
         else:
             return False
@@ -22,8 +22,12 @@ def validpnr(pnr):
 
 def validpnralt2(pnr):
     return len(str(pnr)) == 10 and int(str(pnr)[-1]) == 10 - int(str(
-        sum( map(lambda x: sum(map(int, str(x)  ) ), map(lambda x: int(x) * 2, str(pnr)[:9:2]))) +
-        sum( map(lambda x: int(x), str(pnr)[1:9:2])))[-1])
+        sum(map(lambda x: sum(map(int, str(x))), map(lambda x: int(x) * 2, str(pnr)[:9:2]))) +
+        sum(map(lambda x: int(x), str(pnr)[1:9:2])))[-1])
+
+
+def validpnralt3(pnr):
+    return len(str(pnr))==10and int(str(pnr)[-1])==10-int(str(sum(map(lambda x:sum(map(int,str(x))),map(lambda x,y:int(x)*y,str(pnr)[0:9],[2,1]*4+[2]))))[-1])
 
 
 def getGender(pnr):
@@ -36,4 +40,4 @@ def getGender(pnr):
         return "male"
 
 
-print validpnralt2(9812302512)
+print validpnralt3(9812302512)
